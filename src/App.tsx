@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from "./components/Navbar.tsx";
 import Header from "./components/Header.tsx";
-import DetailedItemView from "./components/DetailedItemView.tsx";
+import DetailedItemView from "./components/DetailedItemView/DetailedItemView.tsx";
 
 function App() {
 

@@ -5,6 +5,7 @@
   --white: rgba(255, 255, 255, 0.81);
   --grayish-black: #2A2A2A;
   --black: #000;
+  --secondary-color: #8d98cc;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -53,6 +54,11 @@ body {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 300ms, color 300ms;
-    width: 60%;
+    width: 100%;
+    transition: 400ms;
+}
+
+.primary-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--black);
 }
