@@ -1,14 +1,29 @@
 import './App.css'
 import Navbar from "./components/Navbar.tsx";
-import Header from "./components/Header.tsx";
-import DetailedItemView from "./components/DetailedItemView/DetailedItemView.tsx";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/HomePage.tsx';
+import DetailedPage from './pages/DetailedPage.tsx';
+
+// TODO: Add default routing to error page
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomePage />
+    },
+    {
+      path: "items/:id",
+      element: <DetailedPage />
+    }
+  ]
+)
 
 function App() {
 
   return (
     <>
-        <Navbar />
-        <DetailedItemView artist={"Arctic Monkeys"} description={"Newest album t-shirt"} price={100} image={"https://placehold.co/300x500"} />
+       <Navbar/>
+       <RouterProvider router={router} />
     </>
   )
 }
