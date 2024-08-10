@@ -29,9 +29,10 @@ footer {
     width: 33%;
 }
 
-.hardcore {
+#hardcore {
     font-family: var(--road-rage-regular);
-    font-size: 1000px;
+    font-size: 6em;
+    margin: 0;
 }
 
 
@@ -43,4 +44,12 @@ footer {
 
 .footer-content p {
     font-size: 1.20em;
+}
+
+.dot {
+    height: 5em;
+    width: 5em;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
 }
