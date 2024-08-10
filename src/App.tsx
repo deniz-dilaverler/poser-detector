@@ -1,16 +1,29 @@
 import './App.css'
 import Navbar from "./components/Navbar.tsx";
-import Header from "./components/Header.tsx";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/HomePage.tsx';
+import DetailedPage from './pages/DetailedPage.tsx';
+
+// TODO: Add default routing to error page
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <HomePage />
+    },
+    {
+      path: "item/",
+      element: <DetailedPage />
+    }
+  ]
+)
 
 function App() {
 
   return (
     <>
-        <Navbar />
-        <Header />
-      <h1 className="main-title">This is the main title</h1>
-      <h2 className="artist-title">This is the artist title (secondary title)</h2>
-        <p className="description">This is the description</p>
+       <Navbar/>
+       <RouterProvider router={router} />
     </>
   )
 }
