@@ -1,8 +1,7 @@
 import "../styles/Footer.css"
-
+import logo from '../assets/logo.png';
 
 export default function Footer() {
-  //TODO: Change div with className `dot` to a logo
   //TODO: Add paths to the <a> tags
   return (
     <footer>
@@ -16,7 +15,9 @@ export default function Footer() {
       <div className="footer-child-center">
         <div className="footer-content">
           <h2 id="hardcore">Hardcore</h2>
-          <div className="dot" />
+          <div className="logo-container">
+            <img className="footer-logo" src={logo} alt="Hardcore logo" />
+          </div>
         </div>
       </div>
       <div className="footer-child">
