@@ -1,0 +1,30 @@
+nav {
+    background-color: var(--black);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.logo-container img {
+    height: 60px;
+    padding: 10px;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.shopping-cart-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-right: 20px;
+    padding-top: 5px;
+}

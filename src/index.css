@@ -3,12 +3,8 @@
   --road-rage-regular: "Road Rage";
   --roboto-condensed: "Roboto Condensed", sans-serif;
   --white: rgba(255, 255, 255, 0.87);
-  --grayish-black: #1B1818;
+  --grayish-black: #2A2A2A;
   --black: #000;
-
-  color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1B1818;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,9 +15,10 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #2A2A2A;
+  width: 100vw;
 }
 
 /* Titles & Headings */
