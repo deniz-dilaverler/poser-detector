@@ -3,8 +3,6 @@ footer {
     display: flex;
     padding-bottom: 3em;
     padding-top: 1em;
-    position: fixed;
-    bottom: 0;
     width: 100%;
 }
 
