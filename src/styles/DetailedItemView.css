@@ -1,0 +1,42 @@
+.detailedItemContainer {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sizeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0 40px 0;
+}
+
+.sizeButton {
+    background-color: var(--black);
+    color: var(--white);
+    border: #7a7a7a 1px solid;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-family: var(--roboto-condensed);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 300ms, color 300ms;
+    margin-right: 5px;
+}
+
+.lightDivider {
+    width: 60%;
+    height: 1px;
+    background-color: #696969;
+    margin: 20px 0;
+}

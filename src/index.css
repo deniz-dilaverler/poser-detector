@@ -2,7 +2,7 @@
   /* Font weights and styles */
   --road-rage-regular: "Road Rage";
   --roboto-condensed: "Roboto Condensed", sans-serif;
-  --white: rgba(255, 255, 255, 0.87);
+  --white: rgba(255, 255, 255, 0.81);
   --grayish-black: #2A2A2A;
   --black: #000;
 
@@ -42,4 +42,17 @@ body {
   margin: 0;
   color: var(--white);
   font-weight: normal;
+}
+
+.primary-button {
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-family: var(--roboto-condensed);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 300ms, color 300ms;
+    width: 60%;
 }
