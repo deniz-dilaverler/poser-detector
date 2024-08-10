@@ -12,3 +12,14 @@ header {
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: black;
 }
+
+/* after 2500 pixels */
+@media (min-width: 2500px) {
+    header {
+        height: 1000px;
+    }
+    .slogan-alignment {
+        font-size: 120px !important;
+        padding-top: 100px;
+    }
+}
