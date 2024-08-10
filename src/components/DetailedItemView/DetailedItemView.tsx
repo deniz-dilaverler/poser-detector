@@ -1,7 +1,8 @@
 /* create detailed item view component */
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import '../../styles/DetailedItemView.css';
 import ItemInfoBox from "./ItemInfoBox.tsx";
+import Modal from "./Modal.tsx";
 
 interface DetailedItemViewProps {
     artist: string;
@@ -28,6 +29,7 @@ const DetailedItemView = (props: DetailedItemViewProps) => {
                 </div>
             </div>
             <ItemInfoBox artist={props.artist} description={props.description} price={props.price} onAddToCart={handleQuizOpen}/>
+            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)} />}
         </div>
     )
 }
