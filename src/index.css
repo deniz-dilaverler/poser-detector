@@ -24,7 +24,7 @@ body {
 /* Titles & Headings */
 .main-title {
   font-family: var(--road-rage-regular);
-  font-size: 60px;
+  font-size: 50px;
   margin: 0;
   color: var(--white);
 }

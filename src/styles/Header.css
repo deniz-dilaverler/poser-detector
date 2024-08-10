@@ -1,0 +1,15 @@
+header {
+    background-image: url("../assets/header-photo.jpg");
+    width: auto;
+    height: 550px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 80px;
+}
+
+.slogan-alignment {
+    font-size: 80px !important;
+    padding-top: 50px;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+}
