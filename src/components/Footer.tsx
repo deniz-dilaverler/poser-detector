@@ -3,13 +3,14 @@ import "../styles/Footer.css"
 
 export default function Footer() {
   //TODO: Change div with className `dot` to a logo
+  //TODO: Add paths to the <a> tags
   return (
     <footer>
       <div className="footer-child">
         <div className="footer-content">
           <h2>Customer Service</h2>
-          <p>About Payment</p>
-          <p>Returns Policy</p>
+          <a>About Payment</a>
+          <a>Returns Policy</a>
         </div>
       </div>
       <div className="footer-child-center">
@@ -21,8 +22,8 @@ export default function Footer() {
       <div className="footer-child">
         <div className="footer-content">
           <h2>About Company</h2>
-          <p>Our Values</p>
-          <p>0% Officially Licensed</p>
+          <a>Our Values</a>
+          <a>0% Officially Licensed</a>
         </div>
       </div>
     </footer>

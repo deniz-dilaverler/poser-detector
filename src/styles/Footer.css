@@ -39,11 +39,14 @@ footer {
 .footer-content h2 {
     font-weight: bold;
     font-size: 2em;
+    margin-bottom: 0.5em;
 }
 
 
-.footer-content p {
+.footer-content a {
     font-size: 1.20em;
+    display: block;
+    margin: 0.5em auto;
 }
 
 .dot {
