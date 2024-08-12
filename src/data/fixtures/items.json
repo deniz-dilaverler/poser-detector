@@ -2,85 +2,85 @@
 	{
 		"id": 1,
 		"artist": "Gorillaz",
-		"description": "Gorrilaz band t-shirt",
+		"description": "Band T-shirt",
 		"price": 25.0,
-		"images": []
+		"images": ["gorillaz_band_tshirt", "black_back"]
 	},
 	{
 		"id": 2,
 		"artist": "Arctic Monkeys",
-		"description": "AM album merch",
+		"description": "Black Logo T-shirt",
 		"price": 30.0,
-		"images": []
+		"images": ["arctic_monkeys_logo_tshirt", "black_back"]
 	},
 	{
 		"id": 3,
 		"artist": "Arctic Monkeys",
-		"description": "Favourite Worst Nightmare t-shirt",
+		"description": "The Car White T-shirt",
 		"price": 25.0,
-		"images": []
+		"images": ["arctic_monkeys_the_car", "white_back"]
 	},
 	{
 		"id": 4,
 		"artist": "Megadeth",
-		"description": "Megadeth band logo tshirt",
+		"description": "Classic Logo T-shirt",
 		"price": 28.0,
-		"images": []
+		"images": ["megadeth_classic_logo", "black_back"]
 	},
 	{
 		"id": 5,
 		"artist": "Megadeth",
-		"description": "Megadeth Rust in pieces t-shirt",
+		"description": "Rust in Piece T-shirt",
 		"price": 25.0,
-		"images": []
+		"images": ["megadeth_rust_in_piece", "black_back"]
 	},
 	{
 		"id": 6,
 		"artist": "Slayer",
-		"description": "Slayer Repentless album merch",
+		"description": "Crowned Skull T-shirt",
 		"price": 20.0,
-		"images": []
+		"images": ["slayer_crowned_skull", "black_back"]
 	},
 	{
 		"id": 7,
 		"artist": "Slayer",
-		"description": "Slayer band logo t-shirt",
+		"description": "Hell Awaits T-shirt",
 		"price": 25.0,
-		"images": []
+		"images": ["slayer_hell_awaits", "black_back"]
 	},
 	{
 		"id": 8,
 		"artist": "Gorillaz",
-		"description": "Gorrilaz Noodle t-shirt",
+		"description": "Gorrilaz Band White T-shirt",
 		"price": 35.0,
-		"images": []
+		"images": ["gorillaz_band_white", "white_back"]
 	},
 	{
 		"id": 9,
 		"artist": "Gojira",
-		"description": "Gojira L'enfant sauvage t-shirt",
+		"description": "Serpent Moon T-shirt",
 		"price": 20.0,
-		"images": []
+		"images": ["gojira_serpent_moon", "black_back"]
 	},
 	{
 		"id": 10,
 		"artist": "Gojira",
-		"description": "Gojira band merch",
+		"description": "From Mars to Sirius",
 		"price": 15.0,
-		"images": []
+		"images": ["gojira_from_mars_to_sirius", "black_back"]
 	},
 	{
 		"id": 11,
 		"artist": "Powerwolf",
-		"description": "Powerwolf The Sacrement of Sin t-shirt",
+		"description": "Wake Up the Wicked T-shirt",
 		"price": 25.0,
-		"images": []
+		"images": ["powerwolf_wake_up_the_wicked", "black_back"]
 	},
 	{
 		"id": 12,
 		"artist": "Powerwolf",
-		"description": "Powerwolf group merch",
+		"description": "1589 T-shirt",
 		"price": 28.0,
-		"images": []
+		"images": ["powerwolf_1589", "black_back"]
 	}
 ]

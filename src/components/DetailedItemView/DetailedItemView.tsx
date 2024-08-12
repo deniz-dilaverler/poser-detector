@@ -4,6 +4,7 @@ import '../../styles/DetailedItemView.css';
 import ItemInfoBox from "./ItemInfoBox.tsx";
 import Modal from "./Modal.tsx";
 
+
 interface DetailedItemViewProps {
     artist: string;
     description: string;
@@ -22,10 +23,10 @@ const DetailedItemView = (props: DetailedItemViewProps) => {
         <div className="detailedItemContainer">
             <div className="item-photo-container">
                 <div className="detailedItem">
-                    <img src={props.image} alt="item" />
+                    <img src={`/tshirts/arctic_monkeys_logo_tshirt.png`} alt="item" />
                 </div>
                 <div className="detailedItem">
-                    <img src={props.image} alt="item" />
+                    <img src={`../../${props.image}.png`} alt="item" />
                 </div>
             </div>
             <ItemInfoBox artist={props.artist} description={props.description} price={props.price} onAddToCart={handleQuizOpen}/>
