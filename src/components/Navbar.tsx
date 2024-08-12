@@ -4,27 +4,10 @@ import home from '../assets/home.png';
 import '../styles/Navbar.css';
 import {useEffect, useState} from "react";
 import CartItem from "./CartItem.tsx";
+import useCartItems from '../data/useCartItems';
 const Navbar = () => {
-    const [cartItems, setCartItems] = useState([]);
-
-    const updateCartItems = () => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(cart);
-    };
-
-    useEffect(() => {
-        // Set up a listener to update cart items when localStorage changes
-        window.addEventListener('storage', updateCartItems);
-
-        // Initial load
-        updateCartItems();
-
-        // Clean up listener on unmount
-        return () => {
-            window.removeEventListener('storage', updateCartItems);
-        };
-    }, []);
-
+    const {cartItems} = useCartItems();
+    console.log(cartItems)
   return (
 
         <nav>

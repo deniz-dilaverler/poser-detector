@@ -1,20 +1,10 @@
 import { useState, useEffect } from 'react';
 import "../styles/CartPage.css";
 import CartItem from "../components/CartItem.tsx";
+import useCartItems from "../data/useCartItems.ts";
 const CartPage = () => {
-    const [cartItems, setCartItems] = useState([]);
+    const { cartItems, addToCart, removeFromCart } = useCartItems();
     const [isCheckout, setIsCheckout] = useState(false);
-    useEffect(() => {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        setCartItems(cart);
-    }, []);
-
-    const removeFromCart = (itemId) => {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart = cart.filter(item => item.id !== itemId);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        setCartItems(cart);
-    };
 
     return (
         <div className="cartPageContainer">

@@ -1,18 +1,13 @@
 import { useParams } from "react-router-dom"
 import DetailedItemView from "../components/DetailedItemView/DetailedItemView.tsx";
 import items from "../data/fixtures/items.json";
-
+import useCartItems from '../data/useCartItems';
 export default function DetailedPage() {
 
   let { id } = useParams<string>()
   const itemId:number = parseInt(id || "", 10);
   const item = items.find((item) => item.id === itemId);
-
-  const addToCart = (item, size) => {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push({ ...item, size });
-    localStorage.setItem('cart', JSON.stringify(cart));
-  };
+  const { cartItems, addToCart, removeFromCart } = useCartItems();
 
   if (!item) {
     return <div>Item not found</div>;
