@@ -74,7 +74,7 @@
 }
 
 .sizeErrorDisplay {
-    color:var(--secondary-color) !important;
+    color: var(--secondary-color) !important;
     padding-bottom: 10px;
 }
 

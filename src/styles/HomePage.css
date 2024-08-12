@@ -1,0 +1,28 @@
+.home-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 4em auto;
+    align-items: center;
+    justify-content: center;
+
+    width: 60%;
+    gap: 70px;
+    background: var(--grayish-black);
+}
+
+
+@media (max-width: 1500px) {
+    .home-content {
+        grid-template-columns: repeat(3, 1fr);
+        width: 80%;
+
+    }
+}
+
+@media (max-width: 600px) {
+    .home-content {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+
+    }
+}
