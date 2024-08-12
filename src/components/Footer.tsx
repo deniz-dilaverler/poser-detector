@@ -7,24 +7,24 @@ export default function Footer() {
     <footer>
       <div className="footer-child">
         <div className="footer-content">
-          <h2>Customer Service</h2>
-          <a>About Payment</a>
-          <a>Returns Policy</a>
+          <h2 className="artist">Customer Service</h2>
+          <a className="description">About Payment</a>
+          <a className="description">Returns Policy</a>
         </div>
       </div>
       <div className="footer-child-center">
         <div className="footer-content">
-          <h2 id="hardcore">HARDCORE</h2>
-          <div className="logo-container">
+          <h2 className="main-title hardcore">HARDCORE</h2>
+          <div className="footer-logo-container">
             <img className="footer-logo" src={logo} alt="Hardcore logo" />
           </div>
         </div>
       </div>
       <div className="footer-child">
         <div className="footer-content">
-          <h2>About Company</h2>
-          <a>Our Values</a>
-          <a>0% Officially Licensed</a>
+          <h2 className="artist">About Company</h2>
+          <a className="description">Our Values</a>
+          <a className="description">0% Officially Licensed</a>
         </div>
       </div>
     </footer>
