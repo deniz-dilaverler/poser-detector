@@ -25,7 +25,7 @@ const CartPage = () => {
                 <div>
                     {cartItems.map((item, index) => (
                         <div key={index}>
-                            <CartItem id={item.id} artist={item.artist} description={item.description} price={item.price} images={item.images} removeFromCart={() => removeFromCart(item.id)} size={item.size}/>
+                            <CartItem id={item.id} artist={item.artist} description={item.description} price={item.price} images={item.images} removeFromCart={() => removeFromCart(item.id)} size={item.size} imageSize={"large"}/>
                         </div>
                     ))}
                 </div>
