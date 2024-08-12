@@ -1,7 +1,7 @@
 export interface Item {
-	id: Number,
-	artist: String,
-	description: String,
-	price: Number,
-	images: String[]
+	id: number,
+	artist: string,
+	description: string,
+	price: number,
+	images: string[]
 }
