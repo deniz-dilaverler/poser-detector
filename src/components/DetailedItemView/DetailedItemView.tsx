@@ -1,19 +1,12 @@
-/* create detailed item view component */
 import {useState, useEffect} from 'react';
 import '../../styles/DetailedItemView.css';
 import ItemInfoBox from "./ItemInfoBox.tsx";
 import Modal from "./Modal.tsx";
+import { Item } from '../../data/models.ts';
 
-
-interface DetailedItemViewProps {
-    artist: string;
-    description: string;
-    price: number;
-    image: string;
-}
-
-
-const DetailedItemView = (props: DetailedItemViewProps) => {
+const DetailedItemView = (props: Item) => {
+    console.log("props images")
+    console.log(props.images)
     const [openQuiz, setOpenQuiz] = useState(false)
     const handleQuizOpen = () => {
         setOpenQuiz(true);
@@ -22,12 +15,13 @@ const DetailedItemView = (props: DetailedItemViewProps) => {
     return (
         <div className="detailedItemContainer">
             <div className="item-photo-container">
-                <div className="detailedItem">
-                    <img src={`/tshirts/arctic_monkeys_logo_tshirt.png`} alt="item" />
-                </div>
-                <div className="detailedItem">
-                    <img src={`../../${props.image}.png`} alt="item" />
-                </div>
+                {props.images && props.images.map((image, index) => {
+                    return (
+                        <div className="detailedItem" key={index}>
+                            <img src={`/tshirts/${image}.png`} alt="item"/>
+                        </div>
+                    )
+                })}
             </div>
             <ItemInfoBox artist={props.artist} description={props.description} price={props.price} onAddToCart={handleQuizOpen}/>
             {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)} />}

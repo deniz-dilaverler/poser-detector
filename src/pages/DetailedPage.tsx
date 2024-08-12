@@ -1,12 +1,17 @@
 import { useParams } from "react-router-dom"
 import DetailedItemView from "../components/DetailedItemView/DetailedItemView.tsx";
-
+import items from "../data/fixtures/items.json";
 
 export default function DetailedPage() {
 
   let { id } = useParams<string>()
-
+  const itemId:number = parseInt(id || "", 10);
+  const item = items.find((item) => item.id === itemId);
+  console.log(item.images);
+  if (!item) {
+    return <div>Item not found</div>;
+  }
   return (
-    <DetailedItemView artist={"Arctic Monkeys"} description={"Car Tee"} price={30} image={"assets/tshirts/arctic_monkeys_logo_tshirt"} />
+    <DetailedItemView artist={item.artist} description={item.description} price={item.price} id={item.id} images={item.images}/>
   )
 }
