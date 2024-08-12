@@ -28,5 +28,14 @@ nav {
     border: none;
     cursor: pointer;
     padding-right: 20px;
-    padding-top: 5px;
+    transition: 300ms;
+}
+
+.shopping-cart-button:hover {
+    filter: brightness(0.7);
+}
+
+.shopping-cart-button img {
+    height: 24px;
+    width: auto;
 }
