@@ -14,7 +14,7 @@ export default function Footer() {
       </div>
       <div className="footer-child-center">
         <div className="footer-content">
-          <h2 id="hardcore">Hardcore</h2>
+          <h2 id="hardcore">HARDCORE</h2>
           <div className="logo-container">
             <img className="footer-logo" src={logo} alt="Hardcore logo" />
           </div>
