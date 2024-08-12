@@ -78,6 +78,11 @@
     padding-bottom: 10px;
 }
 
+.detailedItem img {
+    width: auto;
+    height: 400px;
+}
+
 /* Responsiveness */
 @media (max-width: 1010px) {
     .detailedItemContainer {
