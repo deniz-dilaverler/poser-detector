@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     gap: 70px;
+    min-height: 90vh;
 }
 
 .itemDetails {
