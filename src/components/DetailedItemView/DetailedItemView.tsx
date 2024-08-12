@@ -1,32 +1,42 @@
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 import '../../styles/DetailedItemView.css';
 import ItemInfoBox from "./ItemInfoBox.tsx";
 import Modal from "./Modal.tsx";
 import { Item } from '../../data/models.ts';
 
-const DetailedItemView = (props: Item & { addCart: () => void }) => {
-    console.log("props images")
-    console.log(props.images)
-    const [openQuiz, setOpenQuiz] = useState(false)
+const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => {
+    const [openQuiz, setOpenQuiz] = useState(false);
+    const [selectedSize, setSelectedSize] = useState("");
+
     const handleQuizOpen = () => {
-        setOpenQuiz(true);
-        props.addCart()
-    }
+        if (selectedSize) {
+            setOpenQuiz(true);
+            props.addCart(selectedSize);
+        } else {
+            console.log("Please select a size.");
+        }
+    };
 
     return (
         <div className="detailedItemContainer">
             <div className="item-photo-container">
-                {props.images && props.images.map((image, index) => {
-                    return (
-                        <div className="detailedItem" key={index}>
-                            <img src={`/tshirts/${image}.png`} alt="item"/>
-                        </div>
-                    )
-                })}
+                {props.images && props.images.map((image, index) => (
+                    <div className="detailedItem" key={index}>
+                        <img src={`/tshirts/${image}.png`} alt="item"/>
+                    </div>
+                ))}
             </div>
-            <ItemInfoBox artist={props.artist} description={props.description} price={props.price} onAddToCart={handleQuizOpen}/>
+            <ItemInfoBox
+                artist={props.artist}
+                description={props.description}
+                price={props.price}
+                selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
+                onAddToCart={handleQuizOpen}
+            />
             {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)} />}
         </div>
-    )
-}
+    );
+};
+
 export default DetailedItemView;

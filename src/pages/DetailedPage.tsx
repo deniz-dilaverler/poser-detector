@@ -8,17 +8,16 @@ export default function DetailedPage() {
   const itemId:number = parseInt(id || "", 10);
   const item = items.find((item) => item.id === itemId);
 
-  const addToCart = (item) => {
+  const addToCart = (item, size) => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(item);
+    cart.push({ ...item, size });
     localStorage.setItem('cart', JSON.stringify(cart));
   };
-
 
   if (!item) {
     return <div>Item not found</div>;
   }
   return (
-    <DetailedItemView artist={item.artist} description={item.description} price={item.price} id={item.id} images={item.images} addCart={() => addToCart(item)}/>
+    <DetailedItemView artist={item.artist} description={item.description} price={item.price} id={item.id} images={item.images} addCart={(size) => addToCart(item, size)}/>
   )
 }
