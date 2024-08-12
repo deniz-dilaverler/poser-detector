@@ -7,11 +7,18 @@ export default function DetailedPage() {
   let { id } = useParams<string>()
   const itemId:number = parseInt(id || "", 10);
   const item = items.find((item) => item.id === itemId);
-  console.log(item.images);
+
+  const addToCart = (item) => {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
+
   if (!item) {
     return <div>Item not found</div>;
   }
   return (
-    <DetailedItemView artist={item.artist} description={item.description} price={item.price} id={item.id} images={item.images}/>
+    <DetailedItemView artist={item.artist} description={item.description} price={item.price} id={item.id} images={item.images} addCart={() => addToCart(item)}/>
   )
 }

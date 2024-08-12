@@ -1,0 +1,68 @@
+.cartPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 100px;
+    margin-left: 40px;
+    text-align: left;
+}
+
+.cartDisplay {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: start;
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.cartInfoDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 20px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.checkoutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    margin-top: 50px;
+    margin-left: 0;
+    margin-bottom: 20px;
+    text-align: left;
+    gap: 10px;
+    width: 200px;
+}
+
+.cartImageContainer {
+    width: 170px;
+}
+
+.deleteButton {
+    background-color: transparent;
+    color: var(--white);
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.deleteButton img {
+    width: auto;
+    height: 16px;
+    padding-left: 6px;
+}
+
+.cartImage {
+    height: 150px;
+    width: auto;
+}

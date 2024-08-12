@@ -4,12 +4,13 @@ import ItemInfoBox from "./ItemInfoBox.tsx";
 import Modal from "./Modal.tsx";
 import { Item } from '../../data/models.ts';
 
-const DetailedItemView = (props: Item) => {
+const DetailedItemView = (props: Item & { addCart: () => void }) => {
     console.log("props images")
     console.log(props.images)
     const [openQuiz, setOpenQuiz] = useState(false)
     const handleQuizOpen = () => {
         setOpenQuiz(true);
+        props.addCart()
     }
 
     return (
