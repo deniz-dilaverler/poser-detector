@@ -1,3 +1,4 @@
+import itemData from "./fixtures/items.json"
 export interface Item {
 	id: number,
 	artist: string,
@@ -5,3 +6,12 @@ export interface Item {
 	price: number,
 	images: string[]
 }
+
+const items = itemData
+
+
+export function getItemIds() {
+	return items.map((item) => item.id)
+}
+
+
