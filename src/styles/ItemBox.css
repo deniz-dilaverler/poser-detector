@@ -3,6 +3,10 @@
     height: 100%;
 }
 
+.item-parent-container:hover {
+    cursor: pointer;
+}
+
 .image-container {
     background-color: var(--white);
 }
