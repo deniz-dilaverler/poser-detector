@@ -1,6 +1,7 @@
 .item-parent-container {
     grid-template-rows: 8fr 2fr;
     height: 100%;
+    width: 300px;
 }
 
 .item-parent-container:hover {
@@ -9,9 +10,11 @@
 
 .image-container {
     background-color: var(--white);
+    margin-bottom: 10px;
 }
 
 .image-container img {
-    width: 100%;
-    height: 100%;
+    height: 15em;
+    width: auto;
+    object-fit: cover;
 }
