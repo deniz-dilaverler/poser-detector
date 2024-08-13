@@ -21,8 +21,8 @@ export default function ItemBox(props: ItemBoxProp) {
         <img src={"/tshirts/" + img_file_name + ".png"} />
       </div>
       <div >
-        <p className="band-name-text">{item.artist}</p>
-        <p className="desc-text">{item.description}</p>
+        <p className="artist-title">{item.artist}</p>
+        <p className="description">{item.description}</p>
       </div>
     </div>
   )
