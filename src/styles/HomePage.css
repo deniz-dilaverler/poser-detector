@@ -6,7 +6,8 @@
     justify-content: center;
 
     width: 60%;
-    gap: 70px;
+    row-gap: 50px;
+    column-gap: 10px;
     background: var(--grayish-black);
 }
 
