@@ -1,7 +1,7 @@
 footer {
     background: var(--black);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding-top: 1em;
     width: 100%;
 }
@@ -33,8 +33,14 @@ footer {
 }
 
 
-.footer-content a {
+.footer-content-link {
     display: block;
+    text-decoration: none;
+}
+
+.footer-content-link-inline {
+    display: inline;
+    text-decoration: none;
 }
 
 .hardcore {
