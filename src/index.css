@@ -21,6 +21,10 @@ body {
   width: 100vw;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Titles & Headings */
 .main-title {
   font-family: var(--road-rage-regular);
