@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import "../../styles/Modal.css";
 import rightArrow from "../../assets/right-arrow.png";
-import _countdownSound from "../../assets/sounds/countdown.mp3";
 import correctSound from "../../assets/sounds/correct.mp3";
 import wrongSound from "../../assets/sounds/wrong-answer.mp3";
 import Notification from "./Notification.tsx";
-import {EntryResult, EntryStatus, makeGuess, Entry} from "../../quiz/quiz.ts";
+import {Entry, EntryResult, EntryStatus, makeGuess} from "../../quiz/quiz.ts";
 
 interface QuizViewProps {
     artist: string;
@@ -15,7 +14,7 @@ const QuizView = (props: QuizViewProps) => {
     const [answer, setAnswer] = useState("");
     const [countdown, setCountdown] = useState(60);
     const [answers, setAnswers] = useState<Entry[]>([]);
-    const [notification, setNotification] = useState<{ message: string, type: EntryStatus | null }>({ message: "", type: null });
+    const [notification, setNotification] = useState<{ message: string, type: EntryResult | null }>({ message: "", type: null });
 
     const correctSoundEffect = new Audio(correctSound);
     const wrongSoundEffect = new Audio(wrongSound);
@@ -39,15 +38,19 @@ const QuizView = (props: QuizViewProps) => {
             switch (result) {
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Correct!", type: EntryStatus.CORRECT });
+                    setNotification({ message: "Correct!", type: EntryResult.CORRECT });
                     break;
                 case EntryResult.INCORRECT:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryStatus.INCORRECT });
+                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT });
                     break;
                 case EntryResult.BASIC:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Not the most known song!", type: EntryStatus.BASIC });
+                    setNotification({ message: "Not the most known song!", type: EntryResult.BASIC });
+                    break;
+                case EntryResult.DUPLICATE:
+                    wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
+                    setNotification({ message: "You already said that!", type: EntryResult.DUPLICATE });
                     break;
                 default:
                     break;

@@ -1,18 +1,21 @@
-import { useEffect } from "react";
-import { EntryStatus } from "../../quiz/quiz.ts";
-import guy from "../../assets/punk-guy.png" ;
-const Notification = ({ message, type }: { message: string, type: EntryStatus | null }) => {
+import {useEffect} from "react";
+import {EntryResult} from "../../quiz/quiz.ts";
+import guy from "../../assets/punk-guy.png";
+
+const Notification = ({ message, type }: { message: string, type: EntryResult | null }) => {
     if (!type) return null;
 
     let notificationClass = "notification";
-    if (type === EntryStatus.CORRECT || type === EntryStatus.INCORRECT) {
+    if (type === EntryResult.CORRECT || type === EntryResult.INCORRECT || type === EntryResult.DUPLICATE) {
         notificationClass += " top-notification";
-    } else if (type === EntryStatus.BASIC) {
+    } else if (type === EntryResult.BASIC) {
         notificationClass += " corner-notification";
     }
-    if (type === EntryStatus.CORRECT) {
+    if (type === EntryResult.CORRECT) {
         notificationClass += " correct";
-    } else if (type === EntryStatus.INCORRECT) {
+    } else if (type === EntryResult.INCORRECT) {
+        notificationClass += " incorrect";
+    } else if (type === EntryResult.DUPLICATE) {
         notificationClass += " incorrect";
     }
 
@@ -23,7 +26,7 @@ const Notification = ({ message, type }: { message: string, type: EntryStatus | 
 
     return (
         <div className={notificationClass}>
-            {type === EntryStatus.BASIC && <img src={guy} alt={"Punk Guy"} />}
+            {type === EntryResult.BASIC && <img src={guy} alt={"Punk Guy"} />}
             <p>{message}</p>
         </div>
     );
