@@ -15,6 +15,7 @@ const QuizView = (props: QuizViewProps) => {
     const [countdown, setCountdown] = useState(60);
     const [answers, setAnswers] = useState<Entry[]>([]);
     const [notification, setNotification] = useState<{ message: string, type: EntryResult | null }>({ message: "", type: null });
+    const [isOver, setIsOver] = useState(false);
 
     const correctSoundEffect = new Audio(correctSound);
     const wrongSoundEffect = new Audio(wrongSound);
@@ -25,6 +26,10 @@ const QuizView = (props: QuizViewProps) => {
             //soundEffect.play().catch(error => console.error('Failed to play sound:', error));
         }
         if (countdown > 0) {
+            // stop timer countdown if game is over
+            if (isOver) {
+                return;
+            }
             const timerId = setTimeout(() => {
                 setCountdown(countdown - 1);
             }, 1000);
@@ -36,6 +41,15 @@ const QuizView = (props: QuizViewProps) => {
         if (answer.trim() !== "") {
             const [result, answersRes] = makeGuess(props.artist, answers, answer);
             switch (result) {
+                case EntryResult.WIN:
+                    correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
+                    setNotification({ message: "You did it! You're not a poser!", type: EntryResult.WIN });
+                    setIsOver(true);
+                    // count 5 seconds before redirecting
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 5000);
+                    break;
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
                     setNotification({ message: "Correct!", type: EntryResult.CORRECT });
@@ -56,7 +70,6 @@ const QuizView = (props: QuizViewProps) => {
                     break;
             }
             setAnswers(answersRes);
-
             setAnswer(""); // Clear input box
         }
     };
@@ -69,40 +82,56 @@ const QuizView = (props: QuizViewProps) => {
     return (
         <div>
             <Notification message={notification.message} type={notification.type} />
-            <div className="header">
-                <h1 className="main-title">Prove you are not a poser!</h1>
-                <div className="countdown">
-                    <h1 key={countdown} className="countdown-number">{countdown}</h1>
+            {isOver &&
+                <div>
+                    <h1 className="main-title">You did it! You're not a poser!</h1>
+                    <p className="description">Adding to the shopping cart t-shirt of {props.artist}.</p>
                 </div>
-            </div>
-            <div className="quiz-container">
-                <div className="quiz-header">
-                    <h2 className="artist-title">Name 5 {props.artist} songs.</h2>
+            }
+            {countdown === 0 && !isOver &&
+                <div>
+                    <h1 className="main-title">You are a poser!</h1>
+                    <p className="description" style={{paddingBottom: "20px", paddingTop: "10px"}}>Adding to the shopping cart t-shirt of Justin Bieber.</p>
                 </div>
-                <div className="quiz-content">
-                    {answers.map((ans, index) => (
-                        <p key={index}>
-                            <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>{ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}</span> {ans.word}
-                        </p>
-                    ))}
+            }
+            {!isOver && countdown !== 0 &&
+                <div>
+                    <div className="header">
+                        <h1 className="main-title">Prove you are not a poser!</h1>
+                        <div className="countdown">
+                            <h1 key={countdown} className="countdown-number">{countdown}</h1>
+                        </div>
+                    </div>
+                    <div className="quiz-container">
+                        <div className="quiz-header">
+                            <h2 className="artist-title">Name 5 {props.artist} songs.</h2>
+                        </div>
+                        <div className="quiz-content">
+                            {answers.map((ans, index) => (
+                                <p key={index}>
+                                    <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>{ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}</span> {ans.word}
+                                </p>
+                            ))}
+                        </div>
+                        <div className="quiz-input">
+                            <input
+                                type="text"
+                                placeholder="Type in your answer here..."
+                                className="quiz-input-box"
+                                value={answer}
+                                onChange={(e) => setAnswer(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                            />
+                            <button
+                                className="quiz-input-button"
+                                onClick={handleAnswerSubmit}
+                            >
+                                <img src={rightArrow} alt=""/>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="quiz-input">
-                    <input
-                        type="text"
-                        placeholder="Type in your answer here..."
-                        className="quiz-input-box"
-                        value={answer}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                    />
-                    <button
-                        className="quiz-input-button"
-                        onClick={handleAnswerSubmit}
-                    >
-                        <img src={rightArrow} alt=""/>
-                    </button>
-                </div>
-            </div>
+            }
         </div>
     );
 }
