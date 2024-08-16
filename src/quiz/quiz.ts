@@ -35,14 +35,14 @@ function isGameOver(gameState: Entry[]) {
 
 // game_state array is updated with ever made entry
 // duplicates are not added to the game state
-export function makeGuess(artistName: string, gameState: Entry[], entry: string): EntryResult {
+export function makeGuess(artistName: string, gameState: Entry[], entry: string): [EntryResult, Entry[]] {
 	let entryStd = standardize(entry)
 
 	// Check for duplicate
 	for (let pastEntry of gameState) {
 		let pastEntryStd = standardize(pastEntry.word)
 		if (pastEntryStd === entryStd)
-			return EntryResult.DUPLICATE
+			return [EntryResult.DUPLICATE, gameState]
 	}
 
 	const groupSongs = getArtistSongs(artistName)
@@ -57,9 +57,9 @@ export function makeGuess(artistName: string, gameState: Entry[], entry: string)
 			})
 
 			if (isGameOver(gameState))
-				return EntryResult.WIN
+				return [EntryResult.WIN, gameState]
 			else
-				return EntryResult.BASIC
+				return [EntryResult.BASIC, gameState]
 		}
 	}
 
@@ -71,7 +71,7 @@ export function makeGuess(artistName: string, gameState: Entry[], entry: string)
 				"word": entry,
 				"status": EntryStatus.CORRECT
 			})
-			return EntryResult.CORRECT
+			return [EntryResult.CORRECT, gameState]
 		}
 	}
 
@@ -80,5 +80,5 @@ export function makeGuess(artistName: string, gameState: Entry[], entry: string)
 		"word": entry,
 		"status": EntryStatus.INCORRECT
 	})
-	return EntryResult.INCORRECT
+	return [EntryResult.INCORRECT, gameState]
 }
