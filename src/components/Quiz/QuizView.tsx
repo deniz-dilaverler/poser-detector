@@ -12,7 +12,7 @@ import useCartItems from "../../data/useCartItems.ts";
 interface QuizViewProps {
     artist: string;
     addCart: (size: string) => void;
-    selectedSize: String;
+    selectedSize: string;
     isOver: boolean;
     setIsOver: (isOver: boolean) => void;
 }

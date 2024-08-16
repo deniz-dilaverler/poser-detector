@@ -5,9 +5,9 @@ import QuizView from "./QuizView.tsx";
 interface ModalProps {
     open: boolean;
     onClose: () => void;
-    artist: String;
+    artist: string;
     addCart: (size: string) => void;
-    selectedSize: String;
+    selectedSize: string;
 }
 
 const Modal = (props: ModalProps) => {
