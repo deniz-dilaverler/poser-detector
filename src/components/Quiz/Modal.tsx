@@ -6,6 +6,8 @@ interface ModalProps {
     open: boolean;
     onClose: () => void;
     artist: String;
+    addCart: (size: string) => void;
+    selectedSize: String;
 }
 
 const Modal = (props: ModalProps) => {
@@ -44,7 +46,7 @@ const Modal = (props: ModalProps) => {
                         </div>
                     </div>
                 ) : (
-                    <QuizView artist={props.artist} />
+                    <QuizView artist={props.artist}  addCart={props.addCart} selectedSize={props.selectedSize}/>
                 )}
                 <div className="button-holder">
                     <button className="primary-button" onClick={props.onClose}>
