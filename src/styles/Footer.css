@@ -1,14 +1,15 @@
 footer {
     background: var(--black);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding-top: 1em;
     width: 100%;
+
+    height: fit-content;
 }
 
 .footer-child {
-    justify-content: space-around;
     margin-top: 2em;
-    width: 33%;
     height: 10em;
 }
 
@@ -25,7 +26,6 @@ footer {
 .footer-child-center {
     margin-top: 0em;
     justify-content: space-around;
-    width: 33%;
 }
 
 
