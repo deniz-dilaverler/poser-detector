@@ -58,10 +58,7 @@ export function makeGuess(artistName: string, gameState: Entry[], entry: string)
 				"status": EntryStatus.BASIC
 			})
 
-			if (isGameOver(gameState))
-				return [EntryResult.WIN, gameState]
-			else
-				return [EntryResult.BASIC, gameState]
+			return [EntryResult.BASIC, gameState]
 		}
 	}
 
@@ -73,7 +70,10 @@ export function makeGuess(artistName: string, gameState: Entry[], entry: string)
 				"word": entry,
 				"status": EntryStatus.CORRECT
 			})
-			return [EntryResult.CORRECT, gameState]
+			if (isGameOver(gameState))
+				return [EntryResult.WIN, gameState]
+			else
+				return [EntryResult.CORRECT, gameState]
 		}
 	}
 
