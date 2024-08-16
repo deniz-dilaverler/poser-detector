@@ -11,9 +11,12 @@ export interface GroupAnswers {
 	answers: string[],
 	basics: string[]
 }
+interface SongData {
+	[groupName: string]: GroupAnswers;
+}
 
 const items = itemData
-const songs = songData
+const songs: SongData = songData
 
 
 export function getItemIds(): number[] {
@@ -33,8 +36,8 @@ export function getItemById(id: number): Item {
 
 export function getArtistSongs(group_name: string): GroupAnswers {
 	if (group_name in songs) {
-		return songs[group_name]
+		return songs[group_name];
 	} else {
-		throw new Error("No such group named " + group_name + " songs data")
+		throw new Error("No such group named " + group_name + " songs data");
 	}
 }
