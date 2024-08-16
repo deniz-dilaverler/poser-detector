@@ -8,8 +8,10 @@ export default function Footer() {
       <div className="footer-child">
         <div className="footer-content">
           <h2 className="artist">Customer Service</h2>
-          <a className="description">About Payment</a>
-          <a className="description">Returns Policy</a>
+          <a className="description  footer-content-link" href="https://www.flaticon.com/free-icons/smart-cart" title="smart cart icons">Icons created by Freepik - Flaticon</a>
+          <p className="description">Photo by <a className="footer-content-link-inline" href="https://unsplash.com/@bertorendon13?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Roberto Rendon</a> on <a className="footer-content-link-inline" href="https://unsplash.com/photos/a-crowd-of-people-at-a-concert-with-their-hands-in-the-air--Ma-aFuivjs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+          </p>
+          <p className="description">Other images from Freepik</p>
         </div>
       </div>
       <div className="footer-child-center">
@@ -20,13 +22,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-child">
-        <div className="footer-content">
-          <h2 className="artist">About Company</h2>
-          <a className="description">Our Values</a>
-          <a className="description">0% Officially Licensed</a>
-        </div>
-      </div>
+
     </footer>
   )
 }
