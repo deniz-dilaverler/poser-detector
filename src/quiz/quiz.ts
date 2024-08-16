@@ -15,8 +15,10 @@ export interface Entry {
 
 // For easier name matching, removes spaces and '-' and converts all letters to lowercase
 function standardize(text: string): string {
+	const punctuations = ["?", "-", ",", "."]
+	punctuations.forEach((punctuation) => text = text.replace(punctuation, ""))
 	text = text.replace(" ", "")
-	text = text.replace("-", "")
+
 	text = text.toLowerCase()
 	return text
 }
