@@ -14,8 +14,223 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 300px;
-    height: 300px;
-    background-color: #fff;
+    width: fit-content;
+    min-width: 300px;
+    height: fit-content;
+    background-color: #2A2A2A;
     z-index: 9999;
+    border-radius: 4px;
+    padding: 40px;
+}
+
+.button-holder {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 500px;
+    padding: 20px;
+}
+
+.quiz-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    background-color: #262323;
+    height: 200px;
+    overflow-y: auto;
+    transition: 0.3s;
+    padding-top: 10px;
+}
+
+.quiz-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    background-color: var(--secondary-color);
+    border-radius: 2px 2px 0 0;
+}
+
+.quiz-header h2 {
+    padding: 5px 10px;
+    color: #2A2A2A !important;
+}
+
+.quiz-input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 700px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.quiz-input-box {
+    height: 40px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0 0 0 2px;
+    background-color: #262323FF;
+    color: #fff;
+    width: 100%;
+    font-family: var(--roboto-condensed);
+    font-size: 16px;
+    padding: 0 0 0 10px;
+    transition: 0.3s;
+}
+
+::placeholder {
+    color: var(--white);
+    opacity: 1; /* Firefox */
+}
+
+.quiz-input-box:focus,
+.quiz-input-box:active {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 4px var(--secondary-color);
+}
+
+.quiz-input-button {
+    border: 1px solid var(--secondary-color);
+    border-radius: 0 0 2px 0;
+    background-color: var(--secondary-color);
+    color: #fff;
+    width: 100px;
+    transition: 0.2s;
+}
+
+.quiz-input-button img {
+    width: auto;
+    height: 26px;
+}
+
+.quiz-input-button:hover {
+    box-shadow: 0 0 4px var(--secondary-color);
+    cursor: pointer;
+}
+
+.quiz-input-button:active {
+    border: 2px solid var(--secondary-color);
+}
+
+.countdown {
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-number {
+    font-size: 6rem;
+    animation: countdownAnimation 0.6s ease-in-out;
+    color: var(--secondary-color);
+    font-family: var(--road-rage-regular);
+    margin: 0;
+}
+
+@keyframes countdownAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.quiz-content p {
+    padding: 5px 0 5px 10px;
+    margin: 0;
+    font-family: var(--roboto-condensed);
+    color: var(--white);
+    font-size: 16px;
+}
+
+.correct-answer {
+    color: #0f9b0f;
+    font-weight: bolder;
+    font-size: 18px;
+    padding-right: 4px;
+}
+
+.wrong-answer {
+    color: #940101;
+    font-weight: bolder;
+    font-size: 18px;
+    padding-right: 4px;
+}
+
+.quiz-content::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #262323FF;
+}
+
+.quiz-content::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #262323FF;
+}
+
+.quiz-content::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: var(--secondary-color);
+}
+
+/* Notifications: */
+.notification {
+    position: fixed;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-in-out;
+}
+
+.top-notification {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.corner-notification {
+    top: 60px;
+    left: 40px;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

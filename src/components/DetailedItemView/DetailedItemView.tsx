@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../styles/DetailedItemView.css';
 import ItemInfoBox from "./ItemInfoBox.tsx";
-import Modal from "./Modal.tsx";
+import Modal from "../Quiz/Modal.tsx";
 import { Item } from '../../data/models.ts';
 
 const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => {
@@ -34,7 +34,7 @@ const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => 
                 setSelectedSize={setSelectedSize}
                 onAddToCart={handleQuizOpen}
             />
-            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)} />}
+            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)}  artist={props.artist}/>}
         </div>
     );
 };
