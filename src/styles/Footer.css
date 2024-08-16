@@ -4,13 +4,12 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     padding-top: 1em;
     width: 100%;
-
-    height: fit-content;
 }
 
 .footer-child {
     margin-top: 2em;
-    height: 10em;
+    height: fit-content;
+    padding-bottom: 3em;
 }
 
 .footer-content {
@@ -25,13 +24,12 @@ footer {
 
 .footer-child-center {
     margin-top: 0em;
-    justify-content: space-around;
+    height: 10em;
 }
 
 
 .footer-content h2 {
     font-weight: bold;
-    margin-bottom: 0.25em;
 }
 
 
