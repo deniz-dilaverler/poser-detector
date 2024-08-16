@@ -6,7 +6,7 @@ So, we could say, <i>FUNCTIONALLY DYSFUNCTIONAL</i> in a sense.
 
 ## Our Demos:
 * [Demo Video](https://github.com/dbader/readme-template)
-* [Live Website](https://github.com/dbader/readme-template)
+* [Live Website](https://aquamarine-meerkat-1ee492.netlify.app/)
 
 ## Authors
 * [@deniz-dilaverler](https://github.com/deniz-dilaverler)
