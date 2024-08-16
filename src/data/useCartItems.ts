@@ -27,7 +27,7 @@ const useCartItems = () => {
     const removeFromCart = (itemId: number) => {
         try {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            cart = cart.filter(item => item.id !== itemId);
+            cart = cart.filter((item: any) => item.id !== itemId);
             localStorage.setItem('cart', JSON.stringify(cart));
             setCartItems(cart)
         } catch (error) {
