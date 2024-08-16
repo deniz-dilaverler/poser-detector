@@ -67,7 +67,6 @@ const QuizView = (props: QuizViewProps) => {
                     break;
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "Correct!", type: EntryResult.CORRECT});
                     break;
                 case EntryResult.INCORRECT:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
@@ -75,7 +74,7 @@ const QuizView = (props: QuizViewProps) => {
                     break;
                 case EntryResult.BASIC:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "Not the most known song!", type: EntryResult.BASIC});
+                    setNotification({message: "Oh, come on! Not the most known song!", type: EntryResult.BASIC});
                     break;
                 case EntryResult.DUPLICATE:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
@@ -125,7 +124,7 @@ const QuizView = (props: QuizViewProps) => {
                         <div className="quiz-content">
                             {[...answers].reverse().map((ans, index) => (
                                 <p key={index}>
-                                    <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>
+                                    <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : ans.status === EntryStatus.BASIC ? "basic-answer" : "wrong-answer"}>
                                         {ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}
                                     </span>
                                     {ans.word}

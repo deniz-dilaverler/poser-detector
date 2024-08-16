@@ -191,6 +191,13 @@
     padding-right: 4px;
 }
 
+.basic-answer {
+    color: #adadad;
+    font-weight: bolder;
+    font-size: 18px;
+    padding-right: 4px;
+}
+
 .quiz-content::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -242,10 +249,6 @@
     animation: slideDown 0.5s ease-in-out, fadeOut 0.5s ease-in-out 4.5s forwards;
 }
 
-.correct {
-    background-color: #0f9b0f;
-}
-
 .incorrect {
     background-color: #940101;
 }
@@ -260,6 +263,8 @@
     justify-content: center;
     color: var(--white);
     font-family: var(--roboto-condensed);
+    background-color: #724100;
+    border-radius: 8px;
 }
 
 .corner-notification img {

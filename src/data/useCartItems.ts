@@ -36,12 +36,12 @@ const useCartItems = () => {
         }
     }
 
-    const removeFromCart = (itemId: number) => {
+    const removeFromCart = (itemId: number, size: string) => {
         try {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            cart = cart.filter((item: any) => item.id !== itemId);
+            cart = cart.filter((item: any) => !(item.id === itemId && item.size === size));
             localStorage.setItem('cart', JSON.stringify(cart));
-            setCartItems(cart)
+            setCartItems(cart);
         } catch (error) {
             console.error('Failed to remove item from cart:', error);
         }
