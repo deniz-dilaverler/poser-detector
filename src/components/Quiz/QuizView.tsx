@@ -38,7 +38,6 @@ const QuizView = (props: QuizViewProps) => {
         if (countdown > 0) {
             // stop timer countdown if game is over
             if (props.isOver) {
-                // stop sound effect
                 countdownSoundEffect.pause();
                 return;
             }
