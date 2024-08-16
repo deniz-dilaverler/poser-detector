@@ -8,13 +8,18 @@ import {Entry, EntryResult, EntryStatus, makeGuess} from "../../quiz/quiz.ts";
 
 interface QuizViewProps {
     artist: string;
+    addCart: (size: string) => void;
+    selectedSize: String;
 }
 
 const QuizView = (props: QuizViewProps) => {
     const [answer, setAnswer] = useState("");
     const [countdown, setCountdown] = useState(60);
     const [answers, setAnswers] = useState<Entry[]>([]);
-    const [notification, setNotification] = useState<{ message: string, type: EntryResult | null }>({ message: "", type: null });
+    const [notification, setNotification] = useState<{ message: string, type: EntryResult | null }>({
+        message: "",
+        type: null
+    });
     const [isOver, setIsOver] = useState(false);
 
     const correctSoundEffect = new Audio(correctSound);
@@ -43,8 +48,9 @@ const QuizView = (props: QuizViewProps) => {
             switch (result) {
                 case EntryResult.WIN:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "You did it! You're not a poser!", type: EntryResult.WIN });
+                    setNotification({message: "You did it! You're not a poser!", type: EntryResult.WIN});
                     setIsOver(true);
+                    props.addCart(props.selectedSize);
                     // count 5 seconds before redirecting
                     setTimeout(() => {
                         window.location.reload();
@@ -52,19 +58,19 @@ const QuizView = (props: QuizViewProps) => {
                     break;
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Correct!", type: EntryResult.CORRECT });
+                    setNotification({message: "Correct!", type: EntryResult.CORRECT});
                     break;
                 case EntryResult.INCORRECT:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT });
+                    setNotification({message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT});
                     break;
                 case EntryResult.BASIC:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Not the most known song!", type: EntryResult.BASIC });
+                    setNotification({message: "Not the most known song!", type: EntryResult.BASIC});
                     break;
                 case EntryResult.DUPLICATE:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "You already said that!", type: EntryResult.DUPLICATE });
+                    setNotification({message: "You already said that!", type: EntryResult.DUPLICATE});
                     break;
                 default:
                     break;
@@ -81,7 +87,7 @@ const QuizView = (props: QuizViewProps) => {
 
     return (
         <div>
-            <Notification message={notification.message} type={notification.type} />
+            <Notification message={notification.message} type={notification.type}/>
             {isOver &&
                 <div>
                     <h1 className="main-title">You did it! You're not a poser!</h1>
@@ -91,7 +97,8 @@ const QuizView = (props: QuizViewProps) => {
             {countdown === 0 && !isOver &&
                 <div>
                     <h1 className="main-title">You are a poser!</h1>
-                    <p className="description" style={{paddingBottom: "20px", paddingTop: "10px"}}>Adding to the shopping cart t-shirt of Justin Bieber.</p>
+                    <p className="description" style={{paddingBottom: "20px", paddingTop: "10px"}}>Adding to the
+                        shopping cart t-shirt of Justin Bieber.</p>
                 </div>
             }
             {!isOver && countdown !== 0 &&
@@ -107,9 +114,12 @@ const QuizView = (props: QuizViewProps) => {
                             <h2 className="artist-title">Name 5 {props.artist} songs.</h2>
                         </div>
                         <div className="quiz-content">
-                            {answers.map((ans, index) => (
+                            {[...answers].reverse().map((ans, index) => (
                                 <p key={index}>
-                                    <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>{ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}</span> {ans.word}
+                                    <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>
+                                        {ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}
+                                    </span>
+                                    {ans.word}
                                 </p>
                             ))}
                         </div>

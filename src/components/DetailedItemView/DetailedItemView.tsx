@@ -11,9 +11,6 @@ const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => 
     const handleQuizOpen = () => {
         if (selectedSize) {
             setOpenQuiz(true);
-            props.addCart(selectedSize);
-        } else {
-            console.log("Please select a size.");
         }
     };
 
@@ -34,7 +31,7 @@ const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => 
                 setSelectedSize={setSelectedSize}
                 onAddToCart={handleQuizOpen}
             />
-            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)}  artist={props.artist}/>}
+            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)}  artist={props.artist}  addCart={props.addCart}  selectedSize={selectedSize}/>}
         </div>
     );
 };
