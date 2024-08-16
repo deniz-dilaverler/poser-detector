@@ -1,6 +1,5 @@
 import logo from '../assets/logo.png';
 import cart from '../assets/shopping-cart.png';
-import home from '../assets/home.png';
 import '../styles/Navbar.css';
 import CartItem from "./CartItem.tsx";
 import useCartItems from '../data/useCartItems';
@@ -11,14 +10,16 @@ const Navbar = () => {
 
         <nav>
             <div className="logo-container">
-                <img src={logo} alt="" />
-                <h1 className="main-title">HARDCORE</h1>
+                <a className="nav-button" href='/'>
+                    <img src={logo} alt="" />
+                </a>
+                <a className="nav-button" href='/'>
+                    <h1 className="main-title">HARDCORE</h1>
+                </a>
             </div>
             <div>
-                <a className="shopping-cart-button" href={"/"}>
-                    <img src={home} alt="" />
-                </a>
-                <a className="shopping-cart-button cart" href={"/cart"}>
+
+                <a className="nav-button nav-button-right cart" href={"/cart"}>
                     <img src={cart} alt="" />
                 </a>
                 <div className="hide">
