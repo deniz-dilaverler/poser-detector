@@ -27,6 +27,7 @@ nav {
     border: none;
     cursor: pointer;
     transition: 300ms;
+    text-decoration: none;
 }
 
 .nav-button-right {
