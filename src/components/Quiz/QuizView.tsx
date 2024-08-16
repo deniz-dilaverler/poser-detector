@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import "../../styles/Modal.css";
 import rightArrow from "../../assets/right-arrow.png";
 import correctSound from "../../assets/sounds/correct.mp3";
@@ -6,7 +6,7 @@ import wrongSound from "../../assets/sounds/wrong-answer.mp3";
 import clockTicking from "../../assets/sounds/60-second-countdown.mp3";
 import gameWin from "../../assets/sounds/game-win.mp3";
 import Notification from "./Notification.tsx";
-import {Entry, EntryResult, EntryStatus, makeGuess} from "../../quiz/quiz.ts";
+import { Entry, EntryResult, EntryStatus, makeGuess } from "../../quiz/quiz.ts";
 import useCartItems from "../../data/useCartItems.ts";
 
 interface QuizViewProps {
@@ -31,12 +31,14 @@ const QuizView = (props: QuizViewProps) => {
     const countdownSoundEffect = new Audio(clockTicking);
     const gameWinSoundEffect = new Audio(gameWin);
 
+    // Create a ref for the input element
+    const inputRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         if (countdown === 60) {
             countdownSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
         }
         if (countdown > 0) {
-            // stop timer countdown if game is over
             if (props.isOver) {
                 countdownSoundEffect.pause();
                 return;
@@ -46,10 +48,14 @@ const QuizView = (props: QuizViewProps) => {
             }, 1000);
             return () => clearTimeout(timerId);
         } else {
-            // game over!
             addToCartJustin();
         }
     }, [countdown]);
+
+    useEffect(() => {
+        // Focus the input element when the component mounts
+        inputRef.current?.focus();
+    }, []);
 
     const handleAnswerSubmit = () => {
         if (answer.trim() !== "") {
@@ -59,7 +65,6 @@ const QuizView = (props: QuizViewProps) => {
                     gameWinSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
                     props.setIsOver(true);
                     props.addCart(props.selectedSize);
-                    // count 3 seconds before redirecting
                     setTimeout(() => {
                         window.location.reload();
                     }, 3000);
@@ -69,15 +74,15 @@ const QuizView = (props: QuizViewProps) => {
                     break;
                 case EntryResult.INCORRECT:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT});
+                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT });
                     break;
                 case EntryResult.BASIC:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "Oh, come on! Not the most known song!", type: EntryResult.BASIC});
+                    setNotification({ message: "Oh, come on! Not the most known song!", type: EntryResult.BASIC });
                     break;
                 case EntryResult.DUPLICATE:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "You already said that!", type: EntryResult.DUPLICATE});
+                    setNotification({ message: "You already said that!", type: EntryResult.DUPLICATE });
                     break;
                 default:
                     break;
@@ -86,6 +91,7 @@ const QuizView = (props: QuizViewProps) => {
             setAnswer(""); // Clear input box
         }
     };
+
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             handleAnswerSubmit();
@@ -94,7 +100,7 @@ const QuizView = (props: QuizViewProps) => {
 
     return (
         <div>
-            <Notification message={notification.message} type={notification.type}/>
+            <Notification message={notification.message} type={notification.type} />
             {props.isOver &&
                 <div>
                     <h1 className="main-title">You did it! You're not a poser!</h1>
@@ -104,7 +110,7 @@ const QuizView = (props: QuizViewProps) => {
             {countdown === 0 && !props.isOver &&
                 <div>
                     <h1 className="main-title">You are a poser!</h1>
-                    <p className="description" style={{paddingBottom: "20px", paddingTop: "10px"}}>Adding to the
+                    <p className="description" style={{ paddingBottom: "20px", paddingTop: "10px" }}>Adding to the
                         shopping cart t-shirt of Justin Bieber.</p>
                 </div>
             }
@@ -138,12 +144,13 @@ const QuizView = (props: QuizViewProps) => {
                                 value={answer}
                                 onChange={(e) => setAnswer(e.target.value)}
                                 onKeyPress={handleKeyPress}
+                                ref={inputRef} // Attach the ref to the input element
                             />
                             <button
                                 className="quiz-input-button"
                                 onClick={handleAnswerSubmit}
                             >
-                                <img src={rightArrow} alt=""/>
+                                <img src={rightArrow} alt="" />
                             </button>
                         </div>
                     </div>
