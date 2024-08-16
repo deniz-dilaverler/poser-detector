@@ -5,7 +5,7 @@ Poser Detector is a website that sells merch of your favorite bands! Simple, rig
 So, we could say, <i>FUNCTIONALLY DYSFUNCTIONAL</i> in a sense.
 
 ## Our Demos:
-* [Demo Video](https://github.com/dbader/readme-template](https://drive.google.com/file/d/1NUPxYcqsStlkZ3xK1jXp5RUc6pkmirRb/view?usp=sharing)
+* [Demo Video](https://drive.google.com/file/d/1NUPxYcqsStlkZ3xK1jXp5RUc6pkmirRb/view?usp=sharing)
 * [Live Website](https://aquamarine-meerkat-1ee492.netlify.app/)
 
 ## Authors
