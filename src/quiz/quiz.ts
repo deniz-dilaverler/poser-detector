@@ -7,7 +7,7 @@ export enum EntryResult {
 export enum EntryStatus {
 	CORRECT, INCORRECT, BASIC
 }
-interface Entry {
+export interface Entry {
 	word: string,
 	status: EntryStatus
 }

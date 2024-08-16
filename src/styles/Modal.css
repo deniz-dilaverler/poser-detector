@@ -212,25 +212,49 @@
 /* Notifications: */
 .notification {
     position: fixed;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #000;
+    padding: 5px;
     z-index: 1000;
-    animation: slideDown 0.5s ease-in-out;
-}
-
-.top-notification {
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.corner-notification {
-    top: 60px;
-    left: 40px;
 }
 
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+.top-notification {
+    top: 10px;
+    left: 45%;
+    border: 1px solid #000;
+    border-radius: 8px;
+    color: var(--white);
+    font-family: var(--roboto-condensed);
+    animation: slideDown 0.5s ease-in-out, fadeOut 0.5s ease-in-out 4.5s forwards;
+}
+
+.correct {
+    background-color: #0f9b0f;
+}
+
+.incorrect {
+    background-color: #940101;
+}
+
+.corner-notification {
+    top: 60px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-family: var(--roboto-condensed);
+}
+
+.corner-notification img {
+    width: auto;
+    height: 180px;
 }

@@ -1,28 +1,21 @@
 import { useState, useEffect } from 'react';
 import "../../styles/Modal.css";
 import rightArrow from "../../assets/right-arrow.png";
-import countdownSound from "../../assets/sounds/countdown.mp3";
+import _countdownSound from "../../assets/sounds/countdown.mp3";
 import correctSound from "../../assets/sounds/correct.mp3";
 import wrongSound from "../../assets/sounds/wrong-answer.mp3";
 import Notification from "./Notification.tsx";
+import {EntryResult, EntryStatus, makeGuess, Entry} from "../../quiz/quiz.ts";
 
 interface QuizViewProps {
     artist: string;
-}
-/* TODO will be deleted later */
-export enum EntryResult {
-    CORRECT,
-    INCORRECT,
-    WIN,
-    BASIC,
-    DUPLICATE
 }
 
 const QuizView = (props: QuizViewProps) => {
     const [answer, setAnswer] = useState("");
     const [countdown, setCountdown] = useState(60);
-    const [answers, setAnswers] = useState<{ text: string, isCorrect: EntryResult }[]>([]);
-    const [notification, setNotification] = useState<{ message: string, type: EntryResult | null }>({ message: "", type: null });
+    const [answers, setAnswers] = useState<Entry[]>([]);
+    const [notification, setNotification] = useState<{ message: string, type: EntryStatus | null }>({ message: "", type: null });
 
     const correctSoundEffect = new Audio(correctSound);
     const wrongSoundEffect = new Audio(wrongSound);
@@ -42,39 +35,28 @@ const QuizView = (props: QuizViewProps) => {
 
     const handleAnswerSubmit = () => {
         if (answer.trim() !== "") {
-            const result = checkAnswer(answer);
+            const [result, answersRes] = makeGuess(props.artist, answers, answer);
             switch (result) {
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Correct!", type: EntryResult.CORRECT });
+                    setNotification({ message: "Correct!", type: EntryStatus.CORRECT });
                     break;
                 case EntryResult.INCORRECT:
                     wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryResult.INCORRECT });
+                    setNotification({ message: "Incorrect! Try a bit harder!", type: EntryStatus.INCORRECT });
                     break;
                 case EntryResult.BASIC:
-                    setNotification({ message: "Basic Answer", type: EntryResult.BASIC });
+                    wrongSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
+                    setNotification({ message: "Not the most known song!", type: EntryStatus.BASIC });
                     break;
                 default:
                     break;
             }
-            setAnswers([...answers, { text: answer, isCorrect:  result}]);
+            setAnswers(answersRes);
+
             setAnswer(""); // Clear input box
         }
     };
-
-
-    /* TODO Change to a real check! Check if the answer starts with the letter 'a' */
-    const checkAnswer = (answer: string) => {
-        if (answer.toLowerCase().startsWith("a")) {
-            return EntryResult.CORRECT
-        } else if (answer.toLowerCase().startsWith("b")) {
-            return EntryResult.INCORRECT
-        } else {
-            return EntryResult.BASIC
-        }
-    };
-
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             handleAnswerSubmit();
@@ -97,7 +79,7 @@ const QuizView = (props: QuizViewProps) => {
                 <div className="quiz-content">
                     {answers.map((ans, index) => (
                         <p key={index}>
-                            <span className={ans.isCorrect === EntryResult.CORRECT ? "correct-answer" : "wrong-answer"}>{ans.isCorrect === EntryResult.CORRECT ? "✔" : "⨉"}</span> {ans.text}
+                            <span className={ans.status === EntryStatus.CORRECT ? "correct-answer" : "wrong-answer"}>{ans.status === EntryStatus.CORRECT ? "✔" : "⨉"}</span> {ans.word}
                         </p>
                     ))}
                 </div>
