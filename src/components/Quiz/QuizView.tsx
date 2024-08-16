@@ -17,6 +17,7 @@ interface QuizViewProps {
     setIsOver: (isOver: boolean) => void;
 }
 
+const countdownSoundEffect = new Audio(clockTicking);
 const QuizView = (props: QuizViewProps) => {
     const [answer, setAnswer] = useState("");
     const [countdown, setCountdown] = useState(60);
@@ -28,7 +29,6 @@ const QuizView = (props: QuizViewProps) => {
     const { addToCartJustin } = useCartItems();
     const correctSoundEffect = new Audio(correctSound);
     const wrongSoundEffect = new Audio(wrongSound);
-    const countdownSoundEffect = new Audio(clockTicking);
     const gameWinSoundEffect = new Audio(gameWin);
 
     // Create a ref for the input element
@@ -62,6 +62,7 @@ const QuizView = (props: QuizViewProps) => {
             const [result, answersRes] = makeGuess(props.artist, answers, answer);
             switch (result) {
                 case EntryResult.WIN:
+                    countdownSoundEffect.pause()
                     gameWinSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
                     props.setIsOver(true);
                     props.addCart(props.selectedSize);
