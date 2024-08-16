@@ -24,12 +24,24 @@ const useCartItems = () => {
         }
     };
 
-    const removeFromCart = (itemId: number) => {
+    const addToCartJustin = () => {
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({ id: 1, artist: "Justin Bieber", description: "What You Deserve", price: 0, images: ["justin-bieber", "white_back"], size: "XS" });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log(cart)
+            setCartItems(cart);
+        } catch (error) {
+            console.error('Failed to add item to cart:', error);
+        }
+    }
+
+    const removeFromCart = (itemId: number, size: string) => {
         try {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-            cart = cart.filter((item: any) => item.id !== itemId);
+            cart = cart.filter((item: any) => !(item.id === itemId && item.size === size));
             localStorage.setItem('cart', JSON.stringify(cart));
-            setCartItems(cart)
+            setCartItems(cart);
         } catch (error) {
             console.error('Failed to remove item from cart:', error);
         }
@@ -44,6 +56,7 @@ const useCartItems = () => {
         cartItems,
         addToCart,
         removeFromCart,
+        addToCartJustin,
     };
 };
 

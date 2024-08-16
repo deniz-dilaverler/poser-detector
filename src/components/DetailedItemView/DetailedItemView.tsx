@@ -14,6 +14,11 @@ const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => 
         }
     };
 
+    const handleQuizClose = () => {
+        setOpenQuiz(false);
+        window.location.reload();
+    }
+
     return (
         <div className="detailedItemContainer">
             <div className="item-photo-container">
@@ -31,7 +36,7 @@ const DetailedItemView = (props: Item & { addCart: (size: string) => void }) => 
                 setSelectedSize={setSelectedSize}
                 onAddToCart={handleQuizOpen}
             />
-            {openQuiz && <Modal open={openQuiz} onClose={() => setOpenQuiz(false)}  artist={props.artist}  addCart={props.addCart}  selectedSize={selectedSize}/>}
+            {openQuiz && <Modal open={openQuiz} onClose={handleQuizClose}  artist={props.artist}  addCart={props.addCart}  selectedSize={selectedSize}/>}
         </div>
     );
 };

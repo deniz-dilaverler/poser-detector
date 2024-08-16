@@ -8,11 +8,6 @@ const Notification = ({ message, type }: { message: string, type: EntryResult | 
     let notificationClass = "notification";
 
     switch (type) {
-        case EntryResult.WIN:
-            break;
-        case EntryResult.CORRECT:
-            notificationClass += " top-notification correct";
-            break;
         case EntryResult.INCORRECT:
             notificationClass += " top-notification incorrect";
             break;

@@ -3,7 +3,7 @@ import "../styles/CartPage.css";
 import CartItem from "../components/CartItem.tsx";
 import useCartItems from "../data/useCartItems.ts";
 const CartPage = () => {
-    const { cartItems, addToCart: _addToCart, removeFromCart } = useCartItems();
+    const {cartItems, removeFromCart} = useCartItems();
     const [isCheckout, setIsCheckout] = useState(false);
 
     return (
@@ -15,7 +15,7 @@ const CartPage = () => {
                 <div>
                     {cartItems.map((item, index) => (
                         <div key={index}>
-                            <CartItem id={item.id} artist={item.artist} description={item.description} price={item.price} images={item.images} removeFromCart={() => removeFromCart(item.id)} size={item.size} imageSize={"large"} />
+                            <CartItem id={item.id} artist={item.artist} description={item.description} price={item.price} images={item.images} removeFromCart={() => removeFromCart(item.id, item.size)} size={item.size} imageSize={"large"} />
                         </div>
                     ))}
                 </div>
