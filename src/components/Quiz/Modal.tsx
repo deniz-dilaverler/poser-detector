@@ -11,10 +11,9 @@ interface ModalProps {
 }
 
 const Modal = (props: ModalProps) => {
-    const [answer, setAnswer] = useState("");
     const [showQuiz, setShowQuiz] = useState(false);
     const [countdown, setCountdown] = useState(3);
-
+    const [isOver, setIsOver] = useState(false);
     useEffect(() => {
         // play countdown sound here:
         if (countdown === 3) {
@@ -46,12 +45,14 @@ const Modal = (props: ModalProps) => {
                         </div>
                     </div>
                 ) : (
-                    <QuizView artist={props.artist}  addCart={props.addCart} selectedSize={props.selectedSize}/>
+                    <QuizView artist={props.artist}  addCart={props.addCart} selectedSize={props.selectedSize} isOver={isOver} setIsOver={(bool) => setIsOver(bool)}/>
                 )}
                 <div className="button-holder">
-                    <button className="primary-button" onClick={props.onClose}>
-                        I give up
-                    </button>
+                    {!isOver &&
+                        <button className="primary-button" onClick={props.onClose}>
+                            I give up
+                        </button>
+                    }
                 </div>
             </div>
         </div>

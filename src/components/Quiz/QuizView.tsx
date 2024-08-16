@@ -3,13 +3,18 @@ import "../../styles/Modal.css";
 import rightArrow from "../../assets/right-arrow.png";
 import correctSound from "../../assets/sounds/correct.mp3";
 import wrongSound from "../../assets/sounds/wrong-answer.mp3";
+import clockTicking from "../../assets/sounds/60-second-countdown.mp3";
+import gameWin from "../../assets/sounds/game-win.mp3";
 import Notification from "./Notification.tsx";
 import {Entry, EntryResult, EntryStatus, makeGuess} from "../../quiz/quiz.ts";
+import useCartItems from "../../data/useCartItems.ts";
 
 interface QuizViewProps {
     artist: string;
     addCart: (size: string) => void;
     selectedSize: String;
+    isOver: boolean;
+    setIsOver: (isOver: boolean) => void;
 }
 
 const QuizView = (props: QuizViewProps) => {
@@ -20,25 +25,30 @@ const QuizView = (props: QuizViewProps) => {
         message: "",
         type: null
     });
-    const [isOver, setIsOver] = useState(false);
-
+    const { addToCartJustin } = useCartItems();
     const correctSoundEffect = new Audio(correctSound);
     const wrongSoundEffect = new Audio(wrongSound);
+    const countdownSoundEffect = new Audio(clockTicking);
+    const gameWinSoundEffect = new Audio(gameWin);
 
     useEffect(() => {
         if (countdown === 60) {
-            //const soundEffect = new Audio(countdownSound);
-            //soundEffect.play().catch(error => console.error('Failed to play sound:', error));
+            countdownSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
         }
         if (countdown > 0) {
             // stop timer countdown if game is over
-            if (isOver) {
+            if (props.isOver) {
+                // stop sound effect
+                countdownSoundEffect.pause();
                 return;
             }
             const timerId = setTimeout(() => {
                 setCountdown(countdown - 1);
             }, 1000);
             return () => clearTimeout(timerId);
+        } else {
+            // game over!
+            addToCartJustin();
         }
     }, [countdown]);
 
@@ -47,14 +57,13 @@ const QuizView = (props: QuizViewProps) => {
             const [result, answersRes] = makeGuess(props.artist, answers, answer);
             switch (result) {
                 case EntryResult.WIN:
-                    correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
-                    setNotification({message: "You did it! You're not a poser!", type: EntryResult.WIN});
-                    setIsOver(true);
+                    gameWinSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
+                    props.setIsOver(true);
                     props.addCart(props.selectedSize);
-                    // count 5 seconds before redirecting
+                    // count 3 seconds before redirecting
                     setTimeout(() => {
                         window.location.reload();
-                    }, 5000);
+                    }, 3000);
                     break;
                 case EntryResult.CORRECT:
                     correctSoundEffect.play().catch(error => console.error('Failed to play sound:', error));
@@ -88,20 +97,20 @@ const QuizView = (props: QuizViewProps) => {
     return (
         <div>
             <Notification message={notification.message} type={notification.type}/>
-            {isOver &&
+            {props.isOver &&
                 <div>
                     <h1 className="main-title">You did it! You're not a poser!</h1>
                     <p className="description">Adding to the shopping cart t-shirt of {props.artist}.</p>
                 </div>
             }
-            {countdown === 0 && !isOver &&
+            {countdown === 0 && !props.isOver &&
                 <div>
                     <h1 className="main-title">You are a poser!</h1>
                     <p className="description" style={{paddingBottom: "20px", paddingTop: "10px"}}>Adding to the
                         shopping cart t-shirt of Justin Bieber.</p>
                 </div>
             }
-            {!isOver && countdown !== 0 &&
+            {!props.isOver && countdown !== 0 &&
                 <div>
                     <div className="header">
                         <h1 className="main-title">Prove you are not a poser!</h1>

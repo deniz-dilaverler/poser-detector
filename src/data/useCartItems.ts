@@ -24,6 +24,18 @@ const useCartItems = () => {
         }
     };
 
+    const addToCartJustin = () => {
+        try {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({ id: 1, artist: "Justin Bieber", description: "What You Deserve", price: 0, images: ["justin-bieber", "white_back"], size: "XS" });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log(cart)
+            setCartItems(cart);
+        } catch (error) {
+            console.error('Failed to add item to cart:', error);
+        }
+    }
+
     const removeFromCart = (itemId: number) => {
         try {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -44,6 +56,7 @@ const useCartItems = () => {
         cartItems,
         addToCart,
         removeFromCart,
+        addToCartJustin,
     };
 };
 
