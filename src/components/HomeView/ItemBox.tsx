@@ -10,7 +10,7 @@ export default function ItemBox(props: ItemBoxProp) {
   let img_file_name = item.images[0]
 
   return (
-    <a href={"/items/" + props.item_id}>
+    <a className="no-decoration" href={"/items/" + props.item_id}>
       <div className="item-parent-container" >
         <div className="image-container">
           <img src={"/tshirts/" + img_file_name + ".png"} />

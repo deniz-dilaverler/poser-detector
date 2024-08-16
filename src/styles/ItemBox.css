@@ -6,6 +6,10 @@
     transition: 300ms;
 }
 
+.no-decoration {
+    text-decoration: none;
+}
+
 
 .item-parent-container:hover {
     cursor: pointer;
